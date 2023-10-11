@@ -1,7 +1,9 @@
-<form action="./././locsanpham.php" method="GET" class="locSP">
+<!-- <form action="./././index.php" method="GET" class="locSP">
     <h3>Lọc theo:</h3>
     <div class="locTheoHang">
-        <select name="nsx" id="nsx" class="form-select form-select-lg">
+        <input type="radio" name="Options" id="option" value="DESC"> &nbsp Giá cao tới thấp &nbsp&nbsp&nbsp
+        <input type="radio" name="Options" id="option" value="ASC"> &nbsp Giá thấp tới cao &nbsp&nbsp
+        <select name="selectname" id="nsx" class="form-select form-select-lg">
             <option value=null selected>Danh mục sản phẩm</option>
             <option value="1">Trang điểm</option>
             <option value="2">Chăm sóc da</option>
@@ -22,4 +24,4 @@
     </div>
 
     <button type="submit" id="btn-loc" class="btn btn-danger btn-loc">LỌC</button>
-</form>
+</form> -->

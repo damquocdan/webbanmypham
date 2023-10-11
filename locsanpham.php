@@ -3,14 +3,14 @@
     
     if (isset($_GET['nsx']) && $_GET['gia'] == "null") {
         $nsx = $_GET['nsx'];
-        $sql = "SELECT  * FROM sanpham  INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE sanpham.ID_NSX = ".$nsx;
+        $sql = "SELECT  * FROM sanpham WHERE sanpham.ID_NSX = ".$nsx;
         $result = $conn->query($sql);
         $num_rows = mysqli_num_rows($result);
     }
 
     if (isset($_GET['gia']) && $_GET['nsx'] == "null") {
         $gia = $_GET['gia'];
-        $sql = "SELECT * FROM sanpham INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE ";
+        $sql = "SELECT * FROM sanpham WHERE ";
         switch ($gia) {
             case "0-4000000":
             $sql .= " GIA < 4000000";
@@ -33,7 +33,7 @@
     if (isset($_GET['nsx']) && isset($_GET['gia']) && $_GET['nsx'] != "null" && $_GET['gia'] != "null") {
         $nsx = $_GET['nsx'];
         $gia = $_GET['gia'];
-        $sql = "SELECT  * FROM sanpham  INNER JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE sanpham.ID_NSX = ".$nsx." AND";
+        $sql = "SELECT  * FROM sanpham WHERE sanpham.ID_NSX = ".$nsx." AND";
         switch ($gia) {
             case "0-4000000":
             $sql .= " GIA < 4000000";
@@ -92,15 +92,6 @@
                                 $item .= "<p  class='phone-name'><a href='chitietsanpham.php?id=".$row['ID']."'>".$row["TEN"]."</a></p>";
                                 $item .= "<h3 class='phone-price'>".currency_format($row["GIA"]) ."</h3>";
                                 $item .= "<div class='phone-vote'><p class='value'>".$row["DANHGIA"]."</p><i class='ti-star'></i></div>";
-                                $item .= "<ul class='phone-parameter'>
-                                        <li>Màn hình:" .$row["TS_MANHINH"]."</li>
-                                        <li>Chip:" .$row["CHIP"]."</li>
-                                        <li>Bộ nhớ: ".$row["TS_BONHO"]."</li>
-                                        <li>Sim:" .$row["SIM"]."</li>
-                                        <li>Pin: ".$row["TS_PIN"]."</li>
-                                        </ul>";
-                                $item .= "</div>";
-                                echo $item;   
                             }
                         ?>
                     </div>
@@ -108,7 +99,7 @@
                 </div>
              </div>
         </div>
-        <?php include "./assets/components/footer.php"?>
+        
         <script src="./assets/js/timkiem.js"></script>
     </div>
 </body>

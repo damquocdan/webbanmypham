@@ -4,7 +4,7 @@
 
     if (isset($_GET['id'])) {
         $productId = $_GET['id'];
-        $sql = "SELECT sanpham.*, chitietsanpham.* FROM sanpham JOIN chitietsanpham ON sanpham.ID = chitietsanpham.ID_SP WHERE sanpham.id=".$productId;
+        $sql = "SELECT * from sanpham WHERE sanpham.id=".$productId;
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
     } else {
@@ -70,24 +70,6 @@
                             <div class="buy-now">
                                 <button class="btn-buy-now" onclick="alert('Chức năng đang trong quá trình phát triển!')">MUA NGAY</button>
                             </div>
-                        </div>
-                    </div>
-
-                <div class="detailed-configuration">
-                        <div class="detailed-configuration-info">
-                            <h3>Cấu hình điện thoại <?php echo $row["TEN"]?></h3>
-                            <ul class="detailed-configuration-info-list">
-                                <li>Hệ điều hành: <?php echo $row["HDH"]?></li>
-                                <li>Màn hình: <?php echo $row["TS_MANHINH"]?></li>
-                                <li>Chip: <?php echo $row["CHIP"]?></li>
-                                <li>Sim: <?php echo $row["SIM"]?></li>
-                                <li>Camera: <?php echo $row["TS_CAMERA"]?></li>
-                                <li>Bộ nhớ: <?php echo $row["TS_BONHO"]?></li>
-                                <li>Pin: <?php echo $row["TS_PIN"]?></li>
-                            </ul>
-                        </div>
-                        <div class="detailed-configuration-img">
-                            <img src=<?php echo $row["ANHTHONGSO"]?> width="100%">
                         </div>
                     </div>
                     <div class="review">

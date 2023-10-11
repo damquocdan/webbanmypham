@@ -140,8 +140,7 @@ $admin = $_SESSION['admin'];
                                     if (isset($_GET["name"])) {
                                         $name = $_GET["name"];
                                         $sql = "SELECT * FROM sanpham WHERE TEN LIKE '%$name%'";
-                                    }
-                                    elseif (isset($_GET["Options"]) && in_array($_GET["Options"], ["ASC", "DESC"])) {
+                                    } elseif (isset($_GET["Options"]) && in_array($_GET["Options"], ["ASC", "DESC"])) {
                                         // Handle the sorting form submission and construct the SQL query accordingly
                                         $price_sort = $_GET["Options"];
                                         $sql = "SELECT * FROM sanpham ORDER BY GIA $price_sort";
@@ -149,7 +148,7 @@ $admin = $_SESSION['admin'];
                                         // Handle the location form submission and construct the SQL query accordingly
                                         $location = $_GET["selectname"];
                                         $sql = "SELECT * FROM sanpham WHERE ID_NSX = '$location'";
-                                    }else {
+                                    } else {
                                         $sql = "SELECT * FROM sanpham";
                                     }
                                     $result = mysqli_query($conn, $sql);
@@ -160,23 +159,23 @@ $admin = $_SESSION['admin'];
                                             $nsx = $nsx_data['TENNSX'];
                                         }
                                         $s = '<tr>
-                                    <td>' . $row['ID'] . '</td>
-                                    <td>
-                                        <div class="product">
-                                            <img src=../' . $row['HINHANH'] . '>
-                                            <span>' . $row['TEN'] . '</span>
-                                        </div>
-                                    </td>
-                                    <td>' . currency_format($row['GIA']) . '</td>
-                                    <td>' . $nsx . '</td>
-                                    <td>' . $row['DANHGIA'] . ' Sao</td>
-                                    <td>
-                                        <div class="actions">
-                                            <a href="updateproduct.php?ID=' . $row['ID'] . '" class="btn-update">Sửa</a>
-                                            <button class="btn-block" onclick="deleteProduct(' . $row['ID'] . ')">Xóa</button>
-                                        </div>
-                                    </td>
-                                </tr>';
+                                        <td>' . $row['ID'] . '</td>
+                                        <td>
+                                            <div class="product">
+                                                <img src=../' . $row['HINHANH'] . '>
+                                                <span>' . $row['TEN'] . '</span>
+                                            </div>
+                                        </td>
+                                        <td>' . currency_format($row['GIA']) . '</td>
+                                        <td>' . $nsx . '</td>
+                                        <td>' . $row['DANHGIA'] . ' Sao</td>
+                                        <td>
+                                            <div class="actions">
+                                                <a href="updateproduct.php?ID=' . $row['ID'] . '" class="btn-update">Sửa</a>
+                                                <button class="btn-block" onclick="deleteProduct(' . $row['ID'] . ')">Xóa</button>
+                                            </div>
+                                        </td>
+                                    </tr>';
 
                                         echo $s;
                                     }
