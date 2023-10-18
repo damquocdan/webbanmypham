@@ -80,10 +80,6 @@ include "../webbanmypham/assets/components/formatCurrency.php";
                     <div class="phone-content">
 
                         <?php
-                        // include "./assets/components/formatCurrency.php";
-
-                        
-
                         if (isset($_GET["name"])) {
                             $name = $_GET["name"];
                             $sql = "SELECT * FROM sanpham WHERE TEN LIKE '%$name%'";
@@ -99,13 +95,40 @@ include "../webbanmypham/assets/components/formatCurrency.php";
                             $sql = "SELECT * FROM sanpham";
                         }
                         $result = mysqli_query($conn, $sql);
-
                         while ($row = $result->fetch_assoc()) {
                             $rsNSX = mysqli_query($conn, "SELECT * FROM nsx WHERE ID=" . $row['ID_NSX']);
                             if ($rsNSX) {
                                 $nsx_data = mysqli_fetch_assoc($rsNSX);
                                 $nsx = $nsx_data['TENNSX'];
                             }
+                            $s = '<tr>
+                            <td><a href=' . $row['ID'] . '><img src=" . $row["HINHANH"] . " class="phone-img"></a></td>
+                            <td>
+                                <div class="product">
+                                <img src=" . $row["HINHANH"] . " class="phone-img">
+                                    <span>' . $row['TEN'] . '</span>
+                                </div>
+                            </td>
+                            <td>' . currency_format($row['GIA']) . '</td>
+                            <td>' . $nsx . '</td>
+                            <td>' . $row['DANHGIA'] . ' Sao</td>
+                            <td>
+                                <div class="actions">
+                                    <a href="updateproduct.php?ID=' . $row['ID'] . '" class="btn-update">Sửa</a>
+                                    <button class="btn-block" onclick="deleteProduct(' . $row['ID'] . ')">Xóa</button>
+                                </div>
+                            </td>
+                        </tr>';
+
+                            echo $s;
+                        }
+
+                        while ($row = $result->fetch_assoc()) {
+                            // $rsNSX = mysqli_query($conn, "SELECT * FROM nsx WHERE ID=" . $row['ID_NSX']);
+                            // if ($rsNSX) {
+                            //     $nsx_data = mysqli_fetch_assoc($rsNSX);
+                            //     $nsx = $nsx_data['TENNSX'];
+                            // }
                             
                             $item = "<div class='phone-phone-item'>";
                             $item .= "<a href='chitietsanpham.php?id=" . $row['ID'] . "'><img src=" . $row["HINHANH"] . " class='phone-img'></a>";
